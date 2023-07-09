@@ -1,13 +1,17 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import UserProvider from "./context/UserProvider"
 import MainLayout from "./layouts"
 import AppRoutes from "./routes"
 
 function App() {
 
   return (
-    <MainLayout>
-      <AppRoutes/>
-    </MainLayout>
+    <UserProvider>
+      <MainLayout>
+        <AppRoutes/>
+      </MainLayout>
+    </UserProvider>
+    
   )
 }
 

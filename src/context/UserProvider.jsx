@@ -1,7 +1,7 @@
 import {createContext, useState} from 'react'
 import PropTypes from 'prop-types';
 
-const userContext = createContext(null)
+const UserContext = createContext(null)
 
 const UserProvider = ({children}) => {
 
@@ -22,14 +22,15 @@ const UserProvider = ({children}) => {
     }
 
   return (
-    <userContext.Provider value={contextValue}>
+    <UserContext.Provider value={contextValue}>
         {children}
-    </userContext.Provider>
+    </UserContext.Provider>
   )
 }
 
-UserProvider.prototype = {
+UserProvider.propTypes = {
     children : PropTypes.node.isRequired
 }
 
-export default UserProvider
+export { UserContext};
+export default UserProvider;
