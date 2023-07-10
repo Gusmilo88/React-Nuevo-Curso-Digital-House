@@ -8,12 +8,13 @@ const SearchForm = () => {
   const {categories} = useCategories();
 
   const initialValues = {
-    name : "",
+    ingredient : "",
     category : ""
   }
 
   const validationSchema = Yup.object({
-    name : Yup.string().required("El nombre es obligatorio")
+    ingredient : Yup.string().required("El nombre del ingrediente es obligatorio"),
+    category : Yup.string().required("La categoría es obligatoria")
 
   })
 
@@ -29,9 +30,9 @@ const SearchForm = () => {
             <Row>
               <Col md={6}>
                 <Form.Group>
-                  <Form.Label htmlFor='name'>Nombre de la bebida:</Form.Label>
-                  <Field id="name" type="text" placeholder="Tequila, vodka, etc" name="name" as={Form.Control}/>
-                  <ErrorMessage name='name' component={Form.Text} className='text-danger ms-2'/>
+                  <Form.Label htmlFor='ingredient'>Nombre del ingrediente:</Form.Label>
+                  <Field id="ingredient" type="text" placeholder="Tequila, vodka, etc" name="ingredient" as={Form.Control}/>
+                  <ErrorMessage name='ingredient' component={Form.Text} className='text-danger ms-2'/>
                 </Form.Group>
               </Col>
               <Col md={6}>
@@ -47,6 +48,7 @@ const SearchForm = () => {
                         ))
                       }
                   </Field>
+                  <ErrorMessage name='category' component={Form.Text} className='text-danger ms-2'/>
                 </Form.Group>
               </Col>
             </Row>
