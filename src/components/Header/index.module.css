@@ -1,10 +1,15 @@
 .header {
-    background-color: black;
-    color: white;
+    background-image: url("../../../public/header1.jpg");
+    background-size: cover;
+    height: 40vh;
     text-align: center;
 }
 
 .header h1 {
     font-family: "Outfit", sans-serif;
-    font-weight: 900;
-}
+    font-weight: 600;
+    font-size: 3em;
+    position: relative;
+    color: rgba(138, 43, 226, 0.8);
+    text-shadow: 0 0 5px rgba(76, 0, 143, 0.8), 0 0 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(41, 0, 79, 0.8), 0 0 20px rgba(0, 0, 0, 0.8);
+  }

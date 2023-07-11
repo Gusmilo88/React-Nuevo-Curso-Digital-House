@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import PropTypes from 'prop-types'
-import { filterDrinkService } from "../services/drinks.service";
+import { filterDrinksService } from "../services/drinks.service";
 
 const DrinksContext = createContext(null)
 
@@ -8,12 +8,12 @@ const DrinksProvider = ({children}) => {
 
     const [drinks, setDrinks] = useState([]);
 
-    const getDrink = async (data) => {
+    const getDrinks = async (data) => {
         try {
             
             const {ingredient, category} = data
 
-            const drinkData = await filterDrinkService(ingredient, category)
+            const drinkData = await filterDrinksService(ingredient, category)
 
             setDrinks(drinkData)
 
@@ -24,7 +24,7 @@ const DrinksProvider = ({children}) => {
 
     const contextValue = {
         drinks,
-        getDrink
+        getDrinks
     }
 
   return (

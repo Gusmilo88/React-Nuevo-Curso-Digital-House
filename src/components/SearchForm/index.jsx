@@ -1,11 +1,13 @@
 import {Formik, Field, ErrorMessage} from 'formik';
-import {Form, Row, Col, Alert, Button} from 'react-bootstrap';
-import * as Yup from 'yup' //Importo todo los componentes de yup y los guardo en la variable Yup
+import {Form, Row, Col, Button} from 'react-bootstrap';
+import * as Yup from 'yup' //Importo todos los componentes de yup y los guardo en la variable Yup
 import useCategories from '../../hooks/useCategories';
+import useDrinks from '../../hooks/useDrinks';
 
 const SearchForm = () => {
 
   const {categories} = useCategories();
+  const {getDrinks} = useDrinks()
 
   const initialValues = {
     ingredient : "",
@@ -19,7 +21,7 @@ const SearchForm = () => {
   })
 
   const handleSubmit = (values) => {
-    console.log(values);
+    getDrinks(values)
   }
 
   return (
@@ -54,7 +56,7 @@ const SearchForm = () => {
             </Row>
             <Row className='justify-content-center mt-3'>
               <Col md={3}>
-                <Button variant='primary' disabled={false} className='w-100' type='submit'>
+                <Button variant='primary' disabled={false} className='w-100 my-4' type='submit'>
                   Buscar bebida
                 </Button>
               </Col>
