@@ -7,7 +7,7 @@ import useDrinks from '../../hooks/useDrinks';
 const SearchForm = () => {
 
   const {categories} = useCategories();
-  const {getDrinks} = useDrinks()
+  const {getDrinks, loading} = useDrinks()
 
   const initialValues = {
     ingredient : "",
@@ -56,8 +56,8 @@ const SearchForm = () => {
             </Row>
             <Row className='justify-content-center mt-3'>
               <Col md={3}>
-                <Button variant='primary' disabled={false} className='w-100 my-4' type='submit'>
-                  Buscar bebida
+                <Button variant='primary' disabled={loading} className='w-100 my-4' type='submit'>
+                  {loading ? "Buscando..." : "Buscar bebidas"}
                 </Button>
               </Col>
             </Row>

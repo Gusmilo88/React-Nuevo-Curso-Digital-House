@@ -8,7 +8,7 @@ const DrinksList = () => {
 
   return (
 
-    <Row>
+    <Row className="mt-3">
         {drinks.map((drink) => (
                 <DrinkCard key={drink.idDrink} drink={drink} />
             ))}

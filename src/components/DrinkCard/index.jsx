@@ -1,10 +1,12 @@
 import { Button, Card, Col } from "react-bootstrap"
 import PropTypes from 'prop-types'
+import useDrinks from "../../hooks/useDrinks"
 
 
 const DrinkCard = ({drink}) => {
 
-    const {strDrinkThumb, strDrink} = drink
+    const {strDrinkThumb, strDrink, idDrink} = drink
+    const {getRecipe} = useDrinks()
 
   return (
     <Col md={6} lg={3}>
@@ -14,7 +16,7 @@ const DrinkCard = ({drink}) => {
                 <Card.Title>
                     {strDrink}
                 </Card.Title>
-                <Button variant={"primary"} className='w-100 text-uppercase mt-2'>
+                <Button variant={"primary"} className='w-100 text-uppercase mt-2' onClick={() => getRecipe(idDrink)}>
                     Ver recetas
                 </Button>
             </Card.Body>

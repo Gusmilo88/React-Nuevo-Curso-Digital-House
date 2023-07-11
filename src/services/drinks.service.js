@@ -14,3 +14,16 @@ export const filterDrinksService = async (ingredient, category) => {
         throw new Error("Hubo un error al obtener la bebida")
     }
 }
+
+export const getRecipeService = async (drinkId) => {
+    try {
+        
+        const url = `${apiURL}lookup.php?i=${drinkId}`
+        const {data}= await axios.get(url) 
+
+        return data.drinks[0] || []
+
+    } catch (error) {
+        throw new Error("Hubo un error al obtener la receta")
+    }
+}
