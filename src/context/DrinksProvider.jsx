@@ -2,13 +2,15 @@ import { createContext, useEffect, useState } from "react"
 import PropTypes from 'prop-types'
 import { filterDrinksService, getRecipeService } from "../services/drinks.service";
 
-const DrinksContext = createContext(null)
+const DrinksContext = createContext(null);
 
 const DrinksProvider = ({children}) => {
 
     const [drinks, setDrinks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [recipe, setRecipe] = useState({}); //Fijarse si no va CORCHETES EN VEZ DE LLAVES. Devuelve un objeto en teoria
+    const [idDrink, setIdDrink] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     const getDrinks = async (data) => {
         try {
@@ -28,27 +30,45 @@ const DrinksProvider = ({children}) => {
         }
     }
 
-    const getRecipe = async (drinkId) => {
-        try {
+    useEffect(() => {
 
-            setLoading(true)
+        const getRecipe = async () => {
 
-            const recipeData = await getRecipeService(drinkId)
-            setRecipe(recipeData)
+            if(!idDrink) return
 
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false)
+            try {
+    
+                setLoading(true)
+    
+                const recipeData = await getRecipeService(idDrink)
+                setRecipe(recipeData)
+    
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false)
+            }
         }
+
+        getRecipe()
+    }, [idDrink]);
+
+    const handleDrinkIdClick = (id) => {
+        setIdDrink(id)
     }
 
+    const handleShowModalClick = () => {
+        setShowModal((show) => !show)
+    }
 
     const contextValue = {
         drinks,
         getDrinks,
         loading,
-        getRecipe
+        handleDrinkIdClick,
+        recipe,
+        showModal,
+        handleShowModalClick
     }
 
   return (

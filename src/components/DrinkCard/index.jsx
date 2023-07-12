@@ -6,7 +6,7 @@ import useDrinks from "../../hooks/useDrinks"
 const DrinkCard = ({drink}) => {
 
     const {strDrinkThumb, strDrink, idDrink} = drink
-    const {getRecipe} = useDrinks()
+    const {handleDrinkIdClick, handleShowModalClick} = useDrinks()
 
   return (
     <Col md={6} lg={3}>
@@ -16,8 +16,13 @@ const DrinkCard = ({drink}) => {
                 <Card.Title>
                     {strDrink}
                 </Card.Title>
-                <Button variant={"primary"} className='w-100 text-uppercase mt-2' onClick={() => getRecipe(idDrink)}>
-                    Ver recetas
+                <Button variant={"primary"} className='w-100 text-uppercase mt-2' onClick={() => {
+                    handleDrinkIdClick(idDrink) 
+                    handleShowModalClick()
+                    }
+                    }
+                >
+                    Ver receta
                 </Button>
             </Card.Body>
         </Card>

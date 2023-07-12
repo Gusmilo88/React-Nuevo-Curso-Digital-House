@@ -1,3 +1,4 @@
+import DrinkModalDetail from '../../components/DrinkModalDetail'
 import DrinksList from '../../components/DrinksList'
 import SearchForm from '../../components/SearchForm'
 
@@ -7,6 +8,7 @@ const Home = () => {
     <>
       <SearchForm/>
       <DrinksList/>
+      <DrinkModalDetail/>
     </>
   )
 }

@@ -6,7 +6,7 @@ const NotFound = () => {
         <Row>
             <Col md={12} className='text-center'>
                 <h1 className='text-center text-white'>404</h1>
-                <p className='text-center text-white'>Página no encontrada, viejo borracho</p>
+                <p className='text-center text-white'>Página no encontrada</p>
                 <img src="../../../public/1.png" alt="" />
             </Col>
         </Row>
