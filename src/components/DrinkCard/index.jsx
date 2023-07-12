@@ -2,11 +2,14 @@ import { Button, Card, Col } from "react-bootstrap"
 import PropTypes from 'prop-types'
 import useDrinks from "../../hooks/useDrinks"
 import styles from './index.module.css'
+import useCart from "../../hooks/useCart"
 
 const DrinkCard = ({drink}) => {
 
     const {strDrinkThumb, strDrink, idDrink} = drink
     const {handleDrinkIdClick} = useDrinks()
+
+    const {addCart} = useCart()
 
   return (
     <Col md={6} lg={3}>
@@ -23,12 +26,10 @@ const DrinkCard = ({drink}) => {
                 >
                     Ver receta
                 </Button>
-                <Button style={{ backgroundImage: 'linear-gradient(to bottom right, #00FFFF, #00CED1, #008B8B)',color: '#ffffff' }} className='w-100 text-uppercase mt-2' onClick={() => {
-                    handleDrinkIdClick(idDrink) 
-                    }
-                    }
+                <Button style={{ backgroundImage: 'linear-gradient(to bottom right, #00FFFF, #00CED1, #008B8B)',color: '#ffffff' }} className='w-100 text-uppercase mt-2'
+                onClick={() => addCart(idDrink)}
                 >
-                    Ver receta
+                    Comprar
                 </Button>
             </Card.Body>
         </Card>
