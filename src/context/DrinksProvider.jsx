@@ -42,6 +42,7 @@ const DrinksProvider = ({children}) => {
     
                 const recipeData = await getRecipeService(idDrink)
                 setRecipe(recipeData)
+                setShowModal((show) => !show)
     
             } catch (error) {
                 console.log(error);

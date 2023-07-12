@@ -56,7 +56,7 @@ const SearchForm = () => {
             </Row>
             <Row className='justify-content-center mt-3'>
               <Col md={3}>
-                <Button variant='primary' disabled={loading} className='w-100 my-4 text-uppercase' type='submit'>
+                <Button style={{ backgroundImage: 'linear-gradient(to bottom right, #98FFB3, #00FF99)', color: '#000000', border: '0px solid #000000', textShadow: '2px 1px 1px #ffffff'}} disabled={loading} className='w-100 my-4 text-uppercase' type='submit'>
                   {loading ? "Buscando..." : "Buscar bebidas"}
                 </Button>
               </Col>

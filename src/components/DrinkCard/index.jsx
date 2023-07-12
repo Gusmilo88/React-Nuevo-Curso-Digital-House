@@ -1,24 +1,30 @@
 import { Button, Card, Col } from "react-bootstrap"
 import PropTypes from 'prop-types'
 import useDrinks from "../../hooks/useDrinks"
-
+import styles from './index.module.css'
 
 const DrinkCard = ({drink}) => {
 
     const {strDrinkThumb, strDrink, idDrink} = drink
-    const {handleDrinkIdClick, handleShowModalClick} = useDrinks()
+    const {handleDrinkIdClick} = useDrinks()
 
   return (
     <Col md={6} lg={3}>
         <Card className='mb-4'>
             <Card.Img variant='top' src={strDrinkThumb} alt={`Imagen de ${strDrink}`}/>
             <Card.Body>
-                <Card.Title>
+                <Card.Title className={styles.strDrink}>
                     {strDrink}
                 </Card.Title>
-                <Button variant={"primary"} className='w-100 text-uppercase mt-2' onClick={() => {
+                <Button style={{ backgroundImage: 'linear-gradient(to bottom right, #FF00FF, #8A2BE2, #4B0082)', color: '#ffffff' }} className='w-100 text-uppercase mt-2' onClick={() => {
                     handleDrinkIdClick(idDrink) 
-                    handleShowModalClick()
+                    }
+                    }
+                >
+                    Ver receta
+                </Button>
+                <Button style={{ backgroundImage: 'linear-gradient(to bottom right, #00FFFF, #00CED1, #008B8B)',color: '#ffffff' }} className='w-100 text-uppercase mt-2' onClick={() => {
+                    handleDrinkIdClick(idDrink) 
                     }
                     }
                 >
