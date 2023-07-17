@@ -11,7 +11,7 @@ export const filterDrinksService = async (ingredient, category) => {
         return data.drinks || []
 
     } catch (error) {
-        throw new Error("Hubo un error al obtener la bebida")
+        throw new Error("Hubo un error al obtener las bebidas")
     }
 }
 
@@ -25,5 +25,15 @@ export const getRecipeService = async (drinkId) => {
 
     } catch (error) {
         throw new Error("Hubo un error al obtener la receta")
+    }
+}
+
+export const getDrinkByIdService = async (drinkId) => {
+    try {
+        
+        const url = `${apiURL}lookup.php?i=${drinkId}`
+
+    } catch (error) {
+        throw new Error("Hubo un error al obtener la bebida")
     }
 }

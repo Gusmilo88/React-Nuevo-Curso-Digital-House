@@ -6,6 +6,7 @@ const DrinksContext = createContext(null);
 
 const DrinksProvider = ({children}) => {
 
+    const [drink, setDrink] = useState({});
     const [drinks, setDrinks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [recipe, setRecipe] = useState({}); //Fijarse si no va CORCHETES EN VEZ DE LLAVES. Devuelve un objeto en teoria
@@ -41,6 +42,7 @@ const DrinksProvider = ({children}) => {
                 setLoading(true)
     
                 const recipeData = await getRecipeService(idDrink)
+                setDrink()
                 setRecipe(recipeData)
                 setShowModal((show) => !show)
     
@@ -69,7 +71,8 @@ const DrinksProvider = ({children}) => {
         handleDrinkIdClick,
         recipe,
         showModal,
-        handleShowModalClick
+        handleShowModalClick,
+        idDrink
     }
 
   return (
