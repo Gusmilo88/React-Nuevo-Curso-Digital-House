@@ -26,3 +26,16 @@
     height: 100%;
     object-fit: cover;
 }
+
+.headerContainer {
+    position: relative;
+  }
+  
+  .cartImage {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15vh;
+    border-radius: 50%;
+    margin: 55px;
+  }
