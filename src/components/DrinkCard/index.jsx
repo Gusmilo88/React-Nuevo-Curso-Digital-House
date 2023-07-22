@@ -12,13 +12,11 @@ const DrinkCard = ({ drink }) => {
   const { dispatch } = useCart();
 
   const handleAddCart = () => {
-
-
     dispatch({
-        type: types.addItem,
-        payload : drink
-    })
-  }
+      type: types.addItemToCart,
+      payload: drink,
+    });
+  };
 
   return (
     <Col md={6} lg={3}>
@@ -52,7 +50,7 @@ const DrinkCard = ({ drink }) => {
             className="w-100 text-uppercase mt-2"
             onClick={handleAddCart}
           >
-            Comprar
+            Agregar
           </Button>
         </Card.Body>
       </Card>

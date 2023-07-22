@@ -34,7 +34,7 @@ const DrinkModalDetail = () => {
     const drink = getDrinkById(drinks, idDrink)
 
     dispatch({
-        type: types.addItem,
+        type: types.addItemToCart,
         payload : drink
     })
   }
