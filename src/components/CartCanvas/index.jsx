@@ -11,7 +11,7 @@ const CartCanvas = ({ showCart, handleCloseCart }) => {
 
   return (
     <div>
-      <Offcanvas show={showCart} onHide={handleCloseCart} placement="bottom" >
+      <Offcanvas show={showCart} onHide={handleCloseCart} placement="end" >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Mi carrito <i className="fa-solid fa-cart-shopping fa-bounce"></i></Offcanvas.Title>
         </Offcanvas.Header>
@@ -25,9 +25,9 @@ const CartCanvas = ({ showCart, handleCloseCart }) => {
                     )
                     :(
                         <>
-                          <div className="d-flex align-items-center justify-content-center" style={{ minHeight: "100px" }}>
-                          <h4>El carrito está triste (vacío)</h4>
-                          <img src={cartEmptyImage} alt="" />
+                          <div className="d-flex flex-column align-items-center justify-content-center" style={{ minHeight: "100px" }}>
+                          <h4>El carrito está vacío</h4>
+                          <img src={cartEmptyImage} alt="Imagen de un carrito triste" />
                           </div>
                         </>
                       )}

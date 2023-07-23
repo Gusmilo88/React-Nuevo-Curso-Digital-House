@@ -1,0 +1,11 @@
+.strDrink{
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.price{
+    color: rgb(10, 195, 25);
+    font-size: 3vh;
+}

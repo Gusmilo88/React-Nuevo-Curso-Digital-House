@@ -8,7 +8,8 @@ export const filterDrinksService = async (ingredient, category) => {
         const url = `${apiURL}filter.php?i=${ingredient}&c=${category}`
         const {data}= await axios.get(url) 
 
-        return data.drinks || []
+        const drinks = data.drinks.map(drink => ({...drink, price : +(drink.idDrink / 10).toFixed(0)}))
+        return drinks || []
 
     } catch (error) {
         throw new Error("Hubo un error al obtener las bebidas")

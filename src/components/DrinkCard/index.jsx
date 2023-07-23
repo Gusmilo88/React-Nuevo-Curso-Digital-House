@@ -39,7 +39,7 @@ const DrinkCard = ({ drink }) => {
               handleDrinkIdClick(idDrink);
             }}
           >
-            Ver receta
+            <i className="fa-solid fa-martini-glass" style={{ color: "#ffffff" }}></i> Ver bebida
           </Button>
           <Button
             style={{
@@ -50,7 +50,7 @@ const DrinkCard = ({ drink }) => {
             className="w-100 text-uppercase mt-2"
             onClick={handleAddCart}
           >
-            Agregar
+            <i className="fa-solid fa-cart-shopping" style={{ color: "#ffffff" }}></i> Agregar
           </Button>
         </Card.Body>
       </Card>
