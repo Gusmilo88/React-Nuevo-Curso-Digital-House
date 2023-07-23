@@ -1,94 +1,86 @@
-import { createContext, useEffect, useState } from "react"
-import PropTypes from 'prop-types'
-import { filterDrinksService, getRecipeService } from "../services/drinks.service";
+import { createContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import {
+  filterDrinksService,
+  getRecipeService,
+} from "../services/drinks.service";
 
 const DrinksContext = createContext(null);
 
-const DrinksProvider = ({children}) => {
+const DrinksProvider = ({ children }) => {
+  const [drink, setDrink] = useState({});
+  const [drinks, setDrinks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [recipe, setRecipe] = useState({}); //Fijarse si no va CORCHETES EN VEZ DE LLAVES. Devuelve un objeto en teoria
+  const [idDrink, setIdDrink] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
-    const [drink, setDrink] = useState({});
-    const [drinks, setDrinks] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [recipe, setRecipe] = useState({}); //Fijarse si no va CORCHETES EN VEZ DE LLAVES. Devuelve un objeto en teoria
-    const [idDrink, setIdDrink] = useState(null);
-    const [showModal, setShowModal] = useState(false);
+  const getDrinks = async (data) => {
+    try {
+      const { ingredient, category } = data;
 
-    const getDrinks = async (data) => {
-        try {
-            
-            const {ingredient, category} = data;
+      setLoading(true);
 
-            setLoading(true)
+      const drinkData = await filterDrinksService(ingredient, category);
 
-            const drinkData = await filterDrinksService(ingredient, category)
-
-            setDrinks(drinkData)
-
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false)
-        }
+      setDrinks(drinkData);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    useEffect(() => {
+  useEffect(() => {
+    const getRecipe = async () => {
+      if (!idDrink) return;
 
-        const getRecipe = async () => {
+      try {
+        setLoading(true);
 
-            if(!idDrink) return
+        const recipeData = await getRecipeService(idDrink);
+        setDrink();
+        setRecipe(recipeData);
+        setShowModal((show) => !show);
+        setIdDrink(false)
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-            try {
-    
-                setLoading(true)
-    
-                const recipeData = await getRecipeService(idDrink)
-                setDrink()
-                setRecipe(recipeData)
-                setShowModal((show) => !show)
-    
-            } catch (error) {
-                console.log(error);
-            } finally {
-                setLoading(false)
-            }
-        }
+    getRecipe();
+  }, [idDrink]);
 
-        getRecipe()
-    }, [idDrink]);
+  const handleDrinkIdClick = (id) => {
+    setIdDrink(id);
+  };
 
-    const handleDrinkIdClick = (id) => {
-        setIdDrink(id)
-    }
+  const handleShowModalClick = () => {
+    setShowModal((show) => !show);
+  };
 
-    const handleShowModalClick = () => {
-        setShowModal((show) => !show)
-    }
-
-    const contextValue = {
-        drinks,
-        getDrinks,
-        loading,
-        handleDrinkIdClick,
-        recipe,
-        showModal,
-        handleShowModalClick,
-        idDrink
-    }
+  const contextValue = {
+    drinks,
+    getDrinks,
+    loading,
+    handleDrinkIdClick,
+    recipe,
+    showModal,
+    handleShowModalClick,
+    idDrink,
+  };
 
   return (
-
     <DrinksContext.Provider value={contextValue}>
-        {children}
+      {children}
     </DrinksContext.Provider>
-
-  )
-}
+  );
+};
 
 DrinksProvider.propTypes = {
-    children : PropTypes.node.isRequired
-}
+  children: PropTypes.node.isRequired,
+};
 
-export {
-    DrinksContext,
-    DrinksProvider
-}
+export { DrinksContext, DrinksProvider };

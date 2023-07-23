@@ -32,10 +32,10 @@ const CartItem = ({ drink }) => {
 
   return (
     <div>
-      <ListGroup.Item className="d-flex gap-4 my-2">
+      <ListGroup.Item className="d-flex gap-4">
         <Image src={strDrinkThumb} width={"80px"} />
         <div style={{ width: "100%" }}>
-          <h5 className={styles.strDrink}>{strDrink}</h5>
+          <h5 className="strDrink">{strDrink}</h5>
           <hr />
           <div className="d-flex justify-content-between">
             <h5 className={styles.price}>${price * quantity}</h5>
@@ -56,6 +56,7 @@ const CartItem = ({ drink }) => {
                 style={{ width: "45px" }}
                 className="form-control"
                 value={quantity}
+                readOnly
               />
               <button
                 className="btn btn-sm"

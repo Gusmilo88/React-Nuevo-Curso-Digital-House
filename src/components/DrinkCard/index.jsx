@@ -4,6 +4,7 @@ import useDrinks from "../../hooks/useDrinks";
 import styles from "./index.module.css";
 import useCart from "../../hooks/useCart";
 import { types } from "../../types";
+import Swal from 'sweetalert2'
 
 const DrinkCard = ({ drink }) => {
   const { strDrinkThumb, strDrink, idDrink } = drink;
@@ -16,6 +17,17 @@ const DrinkCard = ({ drink }) => {
       type: types.addItemToCart,
       payload: drink,
     });
+
+    Swal.fire({
+      title: 'Bebida agregada al carrito.',
+      icon: "success",
+      width: 600,
+      padding: '5em',
+      color: '#000000',
+      showConfirmButton: false,
+      timer: 2000,
+      background: 'url(../../../public/cheers.gif)',
+    })
   };
 
   return (
