@@ -37,36 +37,42 @@ const Login = () => {
             <img src={cocktailsImage} alt="" style={{ maxWidth: "100%" }} />
           </div>
 
-          <Form.Group>
-            <Form.Label htmlFor="email">Email:</Form.Label>
-            <Field
-              id="email"
-              type="email"
-              placeholder="user@gmail.com"
-              name="email"
-              as={Form.Control}
-            />
-            <ErrorMessage
-              name="email"
-              component={Form.Text}
-              className="text-danger ms-2"
-            />
-          </Form.Group>
+          <Row className="justify-content-center">
+            <Col md={4}>
+              <Form.Group>
+                <Form.Label htmlFor="email">Email:</Form.Label>
+                <Field
+                  id="email"
+                  type="email"
+                  placeholder="user@gmail.com"
+                  name="email"
+                  as={Form.Control}
+                />
+                <ErrorMessage
+                  name="email"
+                  component={Form.Text}
+                  className="text-danger ms-2"
+                />
+              </Form.Group>
+            </Col>
 
-          <Form.Group>
-            <Form.Label htmlFor="password">Password:</Form.Label>
-            <Field
-              id="password"
-              type="password"
-              name="password"
-              as={Form.Control}
-            />
-            <ErrorMessage
-              name="email"
-              component={Form.Text}
-              className="text-danger ms-2"
-            />
-          </Form.Group>
+            <Col md={4}>
+              <Form.Group>
+                <Form.Label htmlFor="password">Password:</Form.Label>
+                <Field
+                  id="password"
+                  type="password"
+                  name="password"
+                  as={Form.Control}
+                />
+                <ErrorMessage
+                  name="password"
+                  component={Form.Text}
+                  className="text-danger ms-2"
+                />
+              </Form.Group>
+            </Col>
+          </Row>
 
           <Row className="justify-content-center mt-3">
             <Col md={3}>
