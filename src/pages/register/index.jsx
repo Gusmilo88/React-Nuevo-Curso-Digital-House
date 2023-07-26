@@ -3,13 +3,15 @@ import { Form, Row, Col, Button } from "react-bootstrap";
 import * as Yup from "yup"; //Importo todos los componentes de yup y los guardo en la variable Yup
 import cocktailsImage from "../../../public/cocktails.jpg";
 
-const Login = () => {
+const Register = () => {
   const initialValues = {
+    name: "",
     email: "",
     password: "",
   };
 
   const validationSchema = Yup.object({
+    name: Yup.string().required("El nombre es obligatorio"),
     email: Yup.string().required("El email es obligatorio"),
     password: Yup.string().required("La contraseña es obligatoria"),
   });
@@ -36,6 +38,24 @@ const Login = () => {
           >
             <img src={cocktailsImage} alt="" style={{ maxWidth: "100%" }} />
           </div>
+
+          <Form.Group>
+            <Form.Label htmlFor="name">
+              Nombre:
+            </Form.Label>
+            <Field
+              id="name"
+              type="text"
+              placeholder="Tu nombre"
+              name="name"
+              as={Form.Control}
+            />
+            <ErrorMessage
+              name="name"
+              component={Form.Text}
+              className="text-danger ms-2"
+            />
+          </Form.Group>
 
           <Form.Group>
             <Form.Label htmlFor="email">Email:</Form.Label>
@@ -81,7 +101,7 @@ const Login = () => {
                 className="w-100 my-4 text-uppercase"
                 type="submit"
               >
-                Ingresá
+                Registrarse
               </Button>
             </Col>
           </Row>
@@ -91,4 +111,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
