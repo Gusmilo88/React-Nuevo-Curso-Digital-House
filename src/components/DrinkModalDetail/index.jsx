@@ -3,6 +3,8 @@ import useDrinks from "../../hooks/useDrinks"
 import useCart from "../../hooks/useCart"
 import { types } from "../../types"
 import { getDrinkById } from "../../helpers";
+import Swal from 'sweetalert2';
+
 
 
 const DrinkModalDetail = () => {
@@ -37,6 +39,18 @@ const DrinkModalDetail = () => {
         type: types.addItemToCart,
         payload : drink
     })
+
+    Swal.fire({
+      title: 'Bebida agregada al carrito.',
+      icon: "success",
+      width: 600,
+      padding: '5em',
+      color: '#000000',
+      showConfirmButton: false,
+      timer: 2000,
+      background: 'url(../../../public/cheers.gif)',
+    })
+
   }
 
   return (
@@ -71,7 +85,7 @@ const DrinkModalDetail = () => {
             className="w-100 text-uppercase mt-2"
             onClick={handleAddCart}
           >
-            Comprar
+            <i className="fa-solid fa-cart-shopping" style={{ color: "#ffffff" }}></i> Agregar
           </Button>
         </Modal.Body>
         </Col>
