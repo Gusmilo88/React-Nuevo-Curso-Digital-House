@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import { CartProvider } from "./context/CartProvider"
 import { CategoriesProvider } from "./context/CategoriesProvider"
@@ -9,17 +10,20 @@ import AppRoutes from "./routes"
 function App() {
 
   return (
-    <UserProvider>
-      <CategoriesProvider>
-        <DrinksProvider>
-          <CartProvider>
-            <MainLayout>
-              <AppRoutes/>
-            </MainLayout>
-          </CartProvider>
-        </DrinksProvider>
-      </CategoriesProvider>
-    </UserProvider>
+    <BrowserRouter>
+      <UserProvider>
+        <CategoriesProvider>
+          <DrinksProvider>
+            <CartProvider>
+              <MainLayout>
+                <AppRoutes/>
+              </MainLayout>
+            </CartProvider>
+          </DrinksProvider>
+        </CategoriesProvider>
+      </UserProvider>
+    </BrowserRouter>
+    
   );
 }
 
