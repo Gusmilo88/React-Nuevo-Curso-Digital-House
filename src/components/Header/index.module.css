@@ -14,12 +14,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* font-family: "Outfit", sans-serif;
-  font-weight: 600;
-  font-size: 3em; */
-  /* color: #8a2be3;
-  text-shadow: 0 0 5px rgba(76, 0, 143, 0.8), 0 0 10px rgba(0, 0, 0, 0.8),
-    0 0 15px rgba(41, 0, 79, 0.8), 0 0 20px rgba(0, 0, 0, 0.8); */
 }
 
 .logoImage {
@@ -40,30 +34,16 @@
 }
 
 .cartAndBadge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 40px;
+  cursor: pointer;
 }
 
-.userImage{
+.imageBase{
   width: 15vh;
   height: 15vh;
   border-radius: 50%;
   background-color: white;
-}
-
-.logOutImage {
-  width: 15vh;
-  height: 15vh;
-  border-radius: 50%;
-  background-color: white;
-}
-
-.cartImage {
-  width: 15vh;
-  height: 15vh;
-  border-radius: 50%;
+  margin: 40px 8px;
+  cursor: pointer;
 }
 
 .userAndCart {

@@ -43,3 +43,20 @@ export const loginAuthService = async(info) => {
         throw error.response.data
     }
 }
+
+export const profileUserService = async (token) => {
+    try {
+        
+        const url = `${apiURL}profile`;
+        const {data} = await axios.get(url, {
+            headers : {
+                Authorization : token
+            }
+        })
+
+        return data;
+
+    } catch (error) {
+        throw error.response.data
+    }
+}

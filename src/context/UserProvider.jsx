@@ -1,6 +1,6 @@
 import {createContext, useState} from 'react'
 import PropTypes from 'prop-types';
-import { loginAuthService } from '../services/auth.service';
+import { loginAuthService, profileUserService } from '../services/auth.service';
 import jwtDecode from 'jwt-decode';
 
 const UserContext = createContext(null)
@@ -30,6 +30,15 @@ const UserProvider = ({children}) => {
         }
     }
 
+    const profile = async (token) => {
+        try {
+            const response = profileUserService(token);
+            console.log(response);
+        } catch (error) {
+            handleAlert(error)
+        }
+    }
+
     const logout = () => {
         setUser(null)
     }
@@ -38,6 +47,7 @@ const UserProvider = ({children}) => {
         user,
         login,
         logout,
+        profile,
         alert
     }
 
