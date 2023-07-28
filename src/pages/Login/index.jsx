@@ -1,9 +1,12 @@
 import { Formik, Field, ErrorMessage } from "formik";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import * as Yup from "yup"; //Importo todos los componentes de yup y los guardo en la variable Yup
 import cocktailsImage from "../../../public/cocktails.jpg";
+import useUser from "../../hooks/useUser";
 
 const Login = () => {
+  const { login, alert } = useUser();
+
   const initialValues = {
     email: "",
     password: "",
@@ -15,7 +18,7 @@ const Login = () => {
   });
 
   const handleSubmit = (values) => {
-    console.log(values);
+    login(values);
   };
 
   return (
@@ -26,6 +29,7 @@ const Login = () => {
     >
       {(formik) => (
         <Form onSubmit={formik.handleSubmit}>
+          
           <div
             className="image-container"
             style={{
@@ -36,7 +40,12 @@ const Login = () => {
           >
             <img src={cocktailsImage} alt="" style={{ maxWidth: "100%" }} />
           </div>
-
+          <Row className="justify-content-center">
+          <Col md={8}>
+          {alert && <Alert variant="danger" className="text-center">{alert}</Alert>}
+            </Col>
+          </Row>
+            
           <Row className="justify-content-center">
             <Col md={4}>
               <Form.Group>

@@ -1,9 +1,25 @@
 .footer {
-    display: flex;
-    background-color: black;
+    background-color: #1a1a1a;
     color: white;
-    width: 100%;
-    height: 10vh;
-    align-items: center;
-    justify-content: space-evenly;
+  }
+
+.logoFooter {
+    background-color: black;
+    width: 20vh;
+    border-radius: 50%;
+    animation: rotateHorizontal 5s linear infinite;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+@keyframes rotateHorizontal {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
 }

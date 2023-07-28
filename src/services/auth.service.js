@@ -39,7 +39,7 @@ export const loginAuthService = async(info) => {
         return data
 
     } catch (error) {
-        console.log(error);
-        throw new Error(error.message)
+        // console.log(error.response.data.message);
+        throw error.response.data
     }
 }
