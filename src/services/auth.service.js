@@ -57,6 +57,7 @@ export const profileUserService = async (token) => {
         return data;
 
     } catch (error) {
+        console.log(error);
         throw error.response.data
     }
 }

@@ -9,6 +9,7 @@ const UserProvider = ({children}) => {
 
     const [user, setUser] = useState(null);
     const [alert, setAlert] = useState(null);
+    const [userProfile, setUserProfile] = useState(null);
 
     const handleAlert = (error) => {
         setAlert(error.message)
@@ -20,6 +21,7 @@ const UserProvider = ({children}) => {
     const login = async (info) => {
         try {
             const {token} = await loginAuthService(info);
+            sessionStorage.setItem("DrinksToken", token)
 
             const decodedToken = token ? jwtDecode(token) : null;
 
@@ -30,10 +32,19 @@ const UserProvider = ({children}) => {
         }
     }
 
-    const profile = async (token) => {
+    const getProfile = async () => {
         try {
-            const response = profileUserService(token);
+            const token = sessionStorage.getItem("DrinksToken")
+
+            if(!token){
+                return null
+            }
+
+            const response = await profileUserService(token);
+
             console.log(response);
+
+            setUserProfile(response.user)
         } catch (error) {
             handleAlert(error)
         }
@@ -45,9 +56,10 @@ const UserProvider = ({children}) => {
 
     const contextValue = {
         user,
+        userProfile,
         login,
         logout,
-        profile,
+        getProfile,
         alert
     }
 

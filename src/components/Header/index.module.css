@@ -16,6 +16,13 @@
   transform: translate(-50%, -50%);
 }
 
+span {
+  color: white;
+  background-color: rgb(218, 63, 63);
+  font-size: 3vh;
+  border-radius: 10%;
+}
+
 .logoImage {
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.672);

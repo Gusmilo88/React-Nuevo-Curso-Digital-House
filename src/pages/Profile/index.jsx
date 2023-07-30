@@ -3,16 +3,24 @@ import useUser from "../../hooks/useUser";
 
 const Profile = () => {
 
-    const {profile} = useUser()
+    const {userProfile, getProfile} = useUser()
 
     useEffect(() => {
-        profile(token)
+        getProfile()
     }, []);
 
   return (
-    <div>
-      profile
-    </div>
+
+      userProfile && (
+       <div>
+         <h1>Nombre: {userProfile.name}</h1>
+          <hr />
+          <h1>Email: {userProfile.email}</h1>
+       </div>
+      )
+
+
+    
   )
 }
 

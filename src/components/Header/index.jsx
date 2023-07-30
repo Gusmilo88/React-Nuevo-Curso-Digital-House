@@ -5,9 +5,10 @@ import { Badge } from "react-bootstrap";
 import headerImage from "../../../public/header.jpg";
 import logoImage from "../../../public/logo.png";
 import cartImage from "../../../public/cart.jpeg";
+import registerImage from "../../../public/register.png";
 import userImage from "../../../public/user.png";
-import logInImage from "../../../public/login.png";
-import logOutImage from "../../../public/logout.png";
+import logInImage from "../../../public/login.jpg";
+import logOutImage from "../../../public/logout.jpg";
 import useCart from "../../hooks/useCart";
 import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser";
@@ -47,6 +48,7 @@ export const Header = () => {
         <div className={`d-flex align-items-center ${styles.userAndCart}`}>
           {user ? (
             <div>
+              <span>{user.name}</span>
               <Link to={"/user/profile"}>
                 <img
                   src={userImage}
@@ -63,13 +65,22 @@ export const Header = () => {
               </a>
             </div>
           ) : (
-            <Link to={"/login"}>
+            <>
+              <Link to={"/login"}>
               <img
                 src={logInImage}
                 alt="Logo login"
                 className={styles.imageBase}
               />
             </Link>
+            <Link to={"/register"}>
+            <img
+              src={registerImage}
+              alt="Logo login"
+              className={styles.imageBase}
+            />
+          </Link>
+            </>
           )}
 
           <a onClick={handleShowCart}>
