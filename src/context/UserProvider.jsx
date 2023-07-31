@@ -20,7 +20,8 @@ const UserProvider = ({children}) => {
         const token = sessionStorage.getItem("DrinksToken")
         if(token) {
             const decodedToken = jwtDecode(token);
-            setUser(decodedToken.user)
+            setUser(decodedToken.user);
+            setFavorites(user ?.favorites);
         }
     }, []);
 
@@ -53,6 +54,7 @@ const UserProvider = ({children}) => {
             const decodedToken = token ? jwtDecode(token) : null;
 
             setUser(decodedToken.user)
+            setFavorites(decodedToken.user.favorites)
 
             navigate("/")
         } catch (error) {
@@ -82,6 +84,7 @@ const UserProvider = ({children}) => {
     const logout = () => {
         setUser(null),
         setUserProfile({}),
+        setFavorites([])
         sessionStorage.removeItem("DrinksToken")
     }
 
