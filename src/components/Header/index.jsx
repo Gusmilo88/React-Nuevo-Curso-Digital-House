@@ -74,7 +74,7 @@ export const Header = () => {
               />
             </Link>
             <Link to={"/register"}>
-            <img
+            <img 
               src={registerImage}
               alt="Logo login"
               className={styles.imageBase}
@@ -85,12 +85,12 @@ export const Header = () => {
 
           <a onClick={handleShowCart}>
             <div className={styles.cartAndBadge}>
+            <Badge className={styles.badge} bg="danger">{cart.length}</Badge>
               <img
                 src={cartImage}
                 alt="Logo carrito"
-                className={styles.imageBase}
+                className={styles.cart}
               />
-              <Badge bg="danger">{cart.length} </Badge>
             </div>
           </a>
         </div>

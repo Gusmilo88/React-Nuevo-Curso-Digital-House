@@ -43,6 +43,23 @@ span {
 
 .cartAndBadge {
   cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+.badge {
+  width: 8vh;
+}
+
+.cart {
+  width: 15vh;
+  height: 15vh;
+  border-radius: 50%;
+  background-color: white;
+  margin: 40px 8px 0px 8px;
+  cursor: pointer;
 }
 
 .imageBase{
@@ -50,7 +67,7 @@ span {
   height: 15vh;
   border-radius: 50%;
   background-color: white;
-  margin: 40px 8px;
+  margin: 40px 8px 20px 8px;
   cursor: pointer;
 }
 
