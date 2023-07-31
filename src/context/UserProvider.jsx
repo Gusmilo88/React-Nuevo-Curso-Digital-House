@@ -1,7 +1,9 @@
 import {createContext, useState} from 'react'
 import PropTypes from 'prop-types';
-import { loginAuthService, profileUserService } from '../services/auth.service';
+import { loginAuthService, profileUserService, toogleFavoriteService } from '../services/auth.service';
 import jwtDecode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const UserContext = createContext(null)
 
@@ -9,7 +11,32 @@ const UserProvider = ({children}) => {
 
     const [user, setUser] = useState(null);
     const [alert, setAlert] = useState(null);
-    const [userProfile, setUserProfile] = useState(null);
+    const [userProfile, setUserProfile] = useState({})
+    const [favorites, setFavorites]= useState([])
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = sessionStorage.getItem("DrinksToken")
+        if(token) {
+            const decodedToken = jwtDecode(token);
+            setUser(decodedToken.user)
+        }
+    }, []);
+
+    const handleToggleFavorite = (idDrink) => {
+        if(!favorites.includes(idDrink)) {
+            setFavorites([
+                ...favorites,
+                idDrink
+            ])
+        } else {
+            setFavorites(favorites.filter(favorite => favorite !== idDrink))
+        }
+
+        toogleFavoriteService(idDrink)
+
+    }
 
     const handleAlert = (error) => {
         setAlert(error.message)
@@ -26,6 +53,8 @@ const UserProvider = ({children}) => {
             const decodedToken = token ? jwtDecode(token) : null;
 
             setUser(decodedToken.user)
+
+            navigate("/")
         } catch (error) {
             // console.log(error);
             handleAlert(error)
@@ -51,7 +80,9 @@ const UserProvider = ({children}) => {
     }
 
     const logout = () => {
-        setUser(null)
+        setUser(null),
+        setUserProfile({}),
+        sessionStorage.removeItem("DrinksToken")
     }
 
     const contextValue = {
@@ -60,7 +91,9 @@ const UserProvider = ({children}) => {
         login,
         logout,
         getProfile,
-        alert
+        alert,
+        handleToggleFavorite,
+        favorites
     }
 
   return (

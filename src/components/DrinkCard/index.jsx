@@ -3,12 +3,16 @@ import PropTypes from "prop-types";
 import useDrinks from "../../hooks/useDrinks";
 import styles from "./index.module.css";
 import useCart from "../../hooks/useCart";
+import favoriteOneImage from '../../../public/favorite1.png'
+import favoriteTwoImage from '../../../public/favorite2.png'
 import { types } from "../../types";
 import Swal from 'sweetalert2'
+import useUser from "../../hooks/useUser";
 
 const DrinkCard = ({ drink }) => {
   const { strDrinkThumb, strDrink, idDrink } = drink;
   const { handleDrinkIdClick } = useDrinks();
+  const {handleToggleFavorite, favorites} = useUser()
 
   const { dispatch } = useCart();
 
@@ -30,6 +34,10 @@ const DrinkCard = ({ drink }) => {
     })
   };
 
+  const handleFavorite = () => {
+    handleToggleFavorite(idDrink)
+  }
+
   return (
     <Col md={6} lg={3}>
       <Card className="mb-4">
@@ -40,6 +48,14 @@ const DrinkCard = ({ drink }) => {
         />
         <Card.Body>
           <Card.Title className={styles.strDrink}>{strDrink}</Card.Title>
+          <a onClick={handleFavorite}>
+            {
+              favorites.includes(idDrink) ?
+              <img src={favoriteTwoImage} alt="Imagen de un cóctel lleno" className={styles.favoriteTwoImage} />
+              :
+              <img src={favoriteOneImage} alt="Imagen de un cóctel vacío" className={styles.favoriteOneImage} />
+            }
+            </a>
           <Button
             style={{
               backgroundImage:

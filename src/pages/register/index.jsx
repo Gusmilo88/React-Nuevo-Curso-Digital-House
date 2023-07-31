@@ -2,8 +2,13 @@ import { Formik, Field, ErrorMessage } from "formik";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import * as Yup from "yup"; //Importo todos los componentes de yup y los guardo en la variable Yup
 import cocktailsImage from "../../../public/cocktails.jpg";
+import { registerAuthService } from "../../services/auth.service";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+
+  const navigate = useNavigate()
+
   const initialValues = {
     name: "",
     email: "",
@@ -16,8 +21,12 @@ const Register = () => {
     password: Yup.string().required("La contraseña es obligatoria"),
   });
 
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values) => {
+    const response = await registerAuthService(values)
+
+    console.log(response);
+
+    navigate("/login")
   };
 
   return (
@@ -27,7 +36,7 @@ const Register = () => {
       validationSchema={validationSchema}
     >
       {(formik) => (
-        <Form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={formik.handleSubmit} className="col-6 mx-auto">
           <div
             className="image-container"
             style={{
@@ -82,14 +91,14 @@ const Register = () => {
               as={Form.Control}
             />
             <ErrorMessage
-              name="email"
+              name="password"
               component={Form.Text}
               className="text-danger ms-2"
             />
           </Form.Group>
 
           <Row className="justify-content-center mt-3">
-            <Col md={3}>
+            <Col md={4}>
               <Button
                 style={{
                   backgroundImage:
@@ -101,7 +110,7 @@ const Register = () => {
                 className="w-100 my-4 text-uppercase"
                 type="submit"
               >
-                Registrarse
+                Registrate
               </Button>
             </Col>
           </Row>

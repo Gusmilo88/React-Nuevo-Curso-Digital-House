@@ -4,3 +4,8 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+.favoriteOneImage, .favoriteTwoImage{
+    width: 7vh;
+    cursor: pointer;
+}
