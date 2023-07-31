@@ -12,7 +12,7 @@ import useUser from "../../hooks/useUser";
 const DrinkCard = ({ drink }) => {
   const { strDrinkThumb, strDrink, idDrink } = drink;
   const { handleDrinkIdClick } = useDrinks();
-  const {handleToggleFavorite, favorites} = useUser()
+  const {handleToggleFavorite, favorites, user} = useUser()
 
   const { dispatch } = useCart();
 
@@ -35,7 +35,19 @@ const DrinkCard = ({ drink }) => {
   };
 
   const handleFavorite = () => {
+    user ?
     handleToggleFavorite(idDrink)
+    :
+    Swal.fire({
+      title: "Tenés que estar logueado",
+      icon: "error",
+      width: 600,
+      color: '#ffffff',
+      padding: '5em',
+      showConfirmButton: false,
+      timer: 6000,
+      background: 'url(../../../public/echando.gif)',
+    })
   }
 
   return (
